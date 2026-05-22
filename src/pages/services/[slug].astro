@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import { services } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  description: service.metaDescription,
+  provider: {
+    '@type': 'FinancialService',
+    name: 'Canyon Strategic Wealth',
+    url: 'https://canyonstrategicwealth.com',
+  },
+  areaServed: [
+    'Bountiful, UT',
+    'Centerville, UT',
+    'Farmington, UT',
+    'Kaysville, UT',
+    'Salt Lake City, UT',
+  ],
+  url: `https://canyonstrategicwealth.com/services/${service.slug}`,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://canyonstrategicwealth.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Services',
+      item: 'https://canyonstrategicwealth.com/services',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: service.title,
+      item: `https://canyonstrategicwealth.com/services/${service.slug}`,
+    },
+  ],
+};
+---
+
+<BaseLayout title={service.metaTitle} description={service.metaDescription}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify([serviceSchema, breadcrumbSchema])}
+    is:inline
+  />
+
+  <div class="page-header">
+    <h1>{service.title}</h1>
+    <p>{service.subtitle}</p>
+  </div>
+
+  <section class="section">
+    <div class="compliance-content">
+      {service.intro.map((para) => <p style="font-size:16px;">{para}</p>)}
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--gray);">
+    <div class="compliance-content">
+      <h2 class="section-title" style="text-align:center;margin-bottom:8px;">How We Approach It</h2>
+      {
+        service.approach.map((item) => (
+          <>
+            <h3>{item.heading}</h3>
+            <p>{item.body}</p>
+          </>
+        ))
+      }
+    </div>
+  </section>
+
+  <FaqAccordion faqs={service.faqs} />
+
+  <CtaBand
+    heading="See How This Fits Your Plan"
+    text="Schedule a complimentary discovery call and we'll talk through your situation."
+    ctaLabel="Schedule a Discovery Call"
+  />
+</BaseLayout>
