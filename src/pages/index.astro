@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Reviews from '../components/Reviews.astro';
 ---
 
 <BaseLayout
@@ -18,18 +19,19 @@ import CtaBand from '../components/CtaBand.astro';
       </div>
       <div class="hero-stats">
         <div>
-          <div class="hero-stat-number">CFP&reg;</div>
-          <div class="hero-stat-label">Certified Planner</div>
+          <div class="hero-stat-number">2017</div>
+          <div class="hero-stat-label">Serving Clients Since</div>
         </div>
         <div>
-          <div class="hero-stat-number">100%</div>
-          <div class="hero-stat-label">Fiduciary Always</div>
+          <div class="hero-stat-number">100+</div>
+          <div class="hero-stat-label">Utah Families Served</div>
         </div>
         <div>
-          <div class="hero-stat-number">360&deg;</div>
-          <div class="hero-stat-label">Holistic Planning</div>
+          <div class="hero-stat-number">$90M+</div>
+          <div class="hero-stat-label">Assets Under Management</div>
         </div>
       </div>
+      <p class="hero-stats-note">Assets under management as of May 2026.</p>
     </div>
     <div class="hero-geo">
       <div class="geo-ring"></div>
@@ -189,6 +191,8 @@ import CtaBand from '../components/CtaBand.astro';
       <a class="btn btn-primary" href="/services">Explore All Services</a>
     </div>
   </section>
+
+  <Reviews />
 
   <section class="lead-magnet fade-in" role="region" aria-label="Free Guide Download">
     <div class="lead-magnet-inner">
