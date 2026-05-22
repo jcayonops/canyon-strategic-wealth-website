@@ -46,6 +46,7 @@ export default async function handler(req, res) {
   }
 
   const isGuide = body.formType === 'guide';
+  const isSchedule = body.formType === 'schedule';
 
   const email = String(body.email || '').trim();
   if (!isValidEmail(email)) {
@@ -57,11 +58,28 @@ export default async function handler(req, res) {
   const fullName = [firstName, lastName].filter(Boolean).join(' ');
   const phone = String(body.phone || '').trim();
   const topic = String(body.topic || '').trim();
+  const audienceType = String(body.audienceType || '').trim();
   const message = String(body.message || '').trim();
 
-  if (!isGuide && (!fullName || !message)) {
-    return res.status(400).json({ error: 'Please complete the required fields.' });
+  if (isSchedule) {
+    if (!fullName || !phone) {
+      return res.status(400).json({ error: 'Please complete name and phone.' });
+    }
+  } else if (!isGuide) {
+    if (!fullName || !message) {
+      return res.status(400).json({ error: 'Please complete the required fields.' });
+    }
   }
+
+  const audienceLabels = {
+    'business-owner': 'Business Owner',
+    'pre-retiree': 'Pre-Retiree',
+    'retiree': 'Retiree',
+    'executive': 'Executive / Professional',
+    'family': 'Family / Individual',
+    'other': 'Other'
+  };
+  const audienceDisplay = audienceLabels[audienceType] || audienceType;
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -71,17 +89,30 @@ export default async function handler(req, res) {
     });
   }
 
-  const heading = isGuide ? 'New guide download' : 'New website inquiry';
+  const heading = isGuide
+    ? 'New guide download'
+    : isSchedule
+      ? 'New discovery call request'
+      : 'New website inquiry';
   const subject = isGuide
     ? 'New guide download - ' + email
-    : 'New website inquiry' + (fullName ? ' from ' + fullName : '');
+    : isSchedule
+      ? 'New discovery call request' + (fullName ? ' from ' + fullName : '')
+      : 'New website inquiry' + (fullName ? ' from ' + fullName : '');
   const received = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }) + ' MT';
 
+  const formLabel = isGuide
+    ? 'Family Wealth Coordination Checklist (guide download)'
+    : isSchedule
+      ? 'Discovery call request'
+      : 'Contact form';
+
   const fields = [
-    ['Form', isGuide ? 'Family Wealth Coordination Checklist (guide download)' : 'Contact form'],
+    ['Form', formLabel],
     ['Name', fullName],
     ['Email', email],
     ['Phone', phone],
+    ['Audience', audienceDisplay],
     ['Topic', topic],
     ['Message', message],
     ['Received', received]

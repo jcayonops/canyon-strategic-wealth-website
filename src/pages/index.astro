@@ -14,20 +14,20 @@ import Reviews from '../components/Reviews.astro';
       <h1 class="hero-title">Your Financial Life,<br /><span>Strategically Coordinated</span></h1>
       <p class="hero-text">Canyon Strategic Wealth is a fiduciary virtual family office serving Utah families and business owners with $1M+ in investable assets — coordinating investments, taxes, estate planning, and risk management into one seamless strategy built around your life.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="https://calendly.com/jakecazier/discovery-meeting" target="_blank" rel="noopener">Schedule a Discovery Call</a>
+        <a class="btn btn-primary" href="/schedule">Schedule a Discovery Call</a>
         <a class="btn btn-outline" href="/services">Explore Our Services</a>
       </div>
       <div class="hero-stats">
         <div>
-          <div class="hero-stat-number">2017</div>
+          <div class="hero-stat-number" data-count-to="2017" data-from="2000">2017</div>
           <div class="hero-stat-label">Serving Clients Since</div>
         </div>
         <div>
-          <div class="hero-stat-number">100+</div>
+          <div class="hero-stat-number" data-count-to="100" data-suffix="+">100+</div>
           <div class="hero-stat-label">Utah Families Served</div>
         </div>
         <div>
-          <div class="hero-stat-number">$90M+</div>
+          <div class="hero-stat-number" data-count-to="90" data-prefix="$" data-suffix="M+">$90M+</div>
           <div class="hero-stat-label">Assets Under Management</div>
         </div>
       </div>
@@ -42,6 +42,10 @@ import Reviews from '../components/Reviews.astro';
       <div class="geo-dot"></div>
       <div class="geo-dot"></div>
     </div>
+    <a class="hero-scroll-indicator" href="#what-we-do" aria-label="Scroll to content">
+      <span>Scroll</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+    </a>
   </section>
 
   <div class="trust-bar" role="region" aria-label="Credentials and Trust Indicators">
@@ -149,7 +153,7 @@ import Reviews from '../components/Reviews.astro';
     </div>
   </section>
 
-  <section class="section section-dark">
+  <section class="section section-dark" id="what-we-do">
     <div style="text-align:center;margin-bottom:48px;position:relative;z-index:2;">
       <div class="section-eyebrow">What We Do</div>
       <h2 class="section-title light">Comprehensive Wealth Management</h2>

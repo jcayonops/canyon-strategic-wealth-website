@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import LandscapeAccent from '../components/LandscapeAccent.astro';
 ---
 
 <BaseLayout
@@ -12,6 +13,12 @@ import CtaBand from '../components/CtaBand.astro';
     <p>We built our practice around a simple belief: financial planning done well is deeply personal.</p>
   </div>
 
+  <LandscapeAccent
+    src="/landscapes/wasatch-winter.jpg"
+    alt="The Wasatch Front, our home corridor"
+    height="240px"
+  />
+
   <section class="section">
     <div class="story-section">
       <div>
@@ -20,7 +27,7 @@ import CtaBand from '../components/CtaBand.astro';
         <p class="section-subtitle" style="margin-bottom:20px;">Canyon Strategic Wealth was founded on the principle that every family deserves the same level of coordinated, strategic financial guidance that was once reserved for ultra-high-net-worth households.</p>
         <p class="section-subtitle">As your virtual family office, we serve as the strategic quarterback — coordinating across investments, taxes, estate planning, risk management, and beyond. Every recommendation we make, every strategy we build, is grounded in your unique story, your goals, and what matters most to you.</p>
         <div style="margin-top:32px;">
-          <a class="btn btn-primary" href="https://calendly.com/jakecazier/discovery-meeting" target="_blank" rel="noopener">Start a Conversation</a>
+          <a class="btn btn-primary" href="/schedule">Start a Conversation</a>
         </div>
       </div>
       <div>

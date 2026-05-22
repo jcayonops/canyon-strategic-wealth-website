@@ -1,14 +1,8 @@
 ---
-const calendly = 'https://calendly.com/jakecazier/discovery-meeting';
+const scheduleHref = '/schedule';
 ---
 
-<a
-  class="sticky-cta"
-  href={calendly}
-  target="_blank"
-  rel="noopener"
-  aria-label="Schedule a discovery call"
->
+<a class="sticky-cta" href={scheduleHref} aria-label="Schedule a discovery call">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -30,12 +24,17 @@ const calendly = 'https://calendly.com/jakecazier/discovery-meeting';
 </a>
 
 <script>
-  const cta = document.querySelector('.sticky-cta');
-  if (cta) {
+  function setupStickyCta() {
+    const cta = document.querySelector('.sticky-cta');
+    if (!cta) return;
     const toggle = () => {
       cta.classList.toggle('visible', window.scrollY > 700);
     };
     toggle();
-    window.addEventListener('scroll', toggle, { passive: true });
+    if (!(window as unknown as { __canyonStickyScroll?: boolean }).__canyonStickyScroll) {
+      (window as unknown as { __canyonStickyScroll?: boolean }).__canyonStickyScroll = true;
+      window.addEventListener('scroll', toggle, { passive: true });
+    }
   }
+  document.addEventListener('astro:page-load', setupStickyCta);
 </script>

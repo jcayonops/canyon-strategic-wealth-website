@@ -1,0 +1,23 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  height?: string;
+  position?: string;
+}
+
+const {
+  src,
+  alt = '',
+  height = '260px',
+  position = 'center 50%',
+} = Astro.props;
+---
+
+<div
+  class="landscape-accent"
+  style={`background-image:url(${src});height:${height};background-position:${position};`}
+  role="img"
+  aria-label={alt}
+>
+</div>

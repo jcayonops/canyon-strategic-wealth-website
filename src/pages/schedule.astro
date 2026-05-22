@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+---
+
+<BaseLayout
+  title="Schedule a Discovery Call | Canyon Strategic Wealth"
+  description="Schedule a complimentary, no-obligation discovery call with Canyon Strategic Wealth. Tell us about your situation in 30 seconds, or pick a time on the calendar directly."
+>
+  <div class="page-header">
+    <h1>Schedule Your Discovery Call</h1>
+    <p>
+      A complimentary, no-obligation conversation. Tell us a little about your situation and we'll
+      be in touch — or pick a time on the calendar directly.
+    </p>
+  </div>
+
+  <TrustStrip />
+
+  <section class="section">
+    <div class="schedule-grid">
+      <div class="schedule-col">
+        <div class="schedule-col-num">1</div>
+        <h2 class="schedule-col-title">Tell us about you</h2>
+        <p class="schedule-col-intro">
+          A few quick details. Jake will reach out within one business day.
+        </p>
+        <form class="schedule-form contact-form" id="scheduleForm" action="/api/contact" method="POST">
+          <input
+            type="text"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            style="display:none"
+          />
+          <input type="hidden" name="formType" value="schedule" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="s-firstName">First Name</label>
+              <input type="text" id="s-firstName" name="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="s-lastName">Last Name</label>
+              <input type="text" id="s-lastName" name="lastName" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="s-email">Email</label>
+            <input type="email" id="s-email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="s-phone">Phone</label>
+            <input type="tel" id="s-phone" name="phone" placeholder="(555) 555-5555" required />
+          </div>
+          <div class="form-group">
+            <label for="s-audience">What best describes you?</label>
+            <select id="s-audience" name="audienceType" required>
+              <option value="">Please select...</option>
+              <option value="business-owner">Business Owner</option>
+              <option value="pre-retiree">Pre-Retiree</option>
+              <option value="retiree">Retiree</option>
+              <option value="executive">Executive / Professional</option>
+              <option value="family">Family / Individual</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="s-message"
+              >Anything you'd like Jake to know in advance? <span class="optional">(Optional)</span></label
+            >
+            <textarea
+              id="s-message"
+              name="message"
+              placeholder="A sentence or two helps us make the most of the call."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Request a Call
+          </button>
+          <p
+            class="form-status"
+            id="scheduleStatus"
+            role="status"
+            aria-live="polite"
+            style="margin-top:14px;font-size:14px;text-align:center;min-height:1em;"></p>
+        </form>
+      </div>
+
+      <div class="schedule-col">
+        <div class="schedule-col-num">2</div>
+        <h2 class="schedule-col-title">Or book a time directly</h2>
+        <p class="schedule-col-intro">
+          Prefer to skip the form? Pick any open slot on Jake's calendar — about 30 minutes,
+          on a video call.
+        </p>
+        <div
+          class="calendly-inline-widget"
+          data-url="https://calendly.com/jakecazier/discovery-meeting"
+          style="min-width:320px;height:700px;"
+        >
+        </div>
+        <script
+          type="text/javascript"
+          src="https://assets.calendly.com/assets/external/widget.js"
+          async></script>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--gray);padding-top:48px;padding-bottom:48px;">
+    <div class="landing-prose" style="text-align:center;">
+      <p style="font-size:14px;color:var(--text-light);">
+        Prefer a different format? <a href="/contact" style="color:var(--navy);font-weight:700;">See all the ways to reach us</a>
+        — including a 15-minute quick chat for existing clients and direct email.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    function bindScheduleForm() {
+      const form = document.getElementById('scheduleForm') as HTMLFormElement | null;
+      if (!form || form.dataset.bound === '1') return;
+      form.dataset.bound = '1';
+      const status = document.getElementById('scheduleStatus');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+        const payload: Record<string, string> = {};
+        new FormData(form).forEach((value, key) => {
+          payload[key] = String(value);
+        });
+        if (status) status.textContent = '';
+        if (btn && !btn.dataset.label) btn.dataset.label = btn.innerHTML;
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+        }
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then((res) =>
+            res
+              .json()
+              .catch(() => ({}))
+              .then((data) => ({ ok: res.ok, data })),
+          )
+          .then((result) => {
+            if (!status) return;
+            if (result.ok) {
+              form.reset();
+              status.textContent =
+                "Thank you. Jake will reach out within one business day — or pick a time on the calendar to book sooner.";
+              status.style.color = '#1B7A3D';
+            } else {
+              status.textContent =
+                (result.data && (result.data as { error?: string }).error) ||
+                'Something went wrong. Please email jake@canyonstrategicwealth.com or call (801) 903-8287.';
+              status.style.color = '#C0392B';
+            }
+            if (btn) {
+              btn.disabled = false;
+              btn.innerHTML = btn.dataset.label || 'Request a Call';
+            }
+          });
+      });
+    }
+    document.addEventListener('astro:page-load', bindScheduleForm);
+  </script>
+</BaseLayout>
