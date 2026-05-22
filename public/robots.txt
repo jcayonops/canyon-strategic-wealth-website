@@ -60,4 +60,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://canyonstrategicwealth.com/sitemap.xml
+Sitemap: https://canyonstrategicwealth.com/sitemap-index.xml
