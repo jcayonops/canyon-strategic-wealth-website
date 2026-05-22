@@ -1,0 +1,24 @@
+---
+interface Props {
+  heading?: string;
+  text?: string;
+  ctaLabel?: string;
+}
+
+const {
+  heading = 'Ready to Get Started?',
+  text = 'Schedule a complimentary discovery call to see if we are the right fit for your financial life.',
+  ctaLabel = 'Schedule a Discovery Call',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <h2>{heading}</h2>
+  <p>{text}</p>
+  <a
+    class="btn btn-navy"
+    href="https://calendly.com/jakecazier/discovery-meeting"
+    target="_blank"
+    rel="noopener">{ctaLabel}</a
+  >
+</section>
