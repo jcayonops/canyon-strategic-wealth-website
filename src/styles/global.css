@@ -57,7 +57,7 @@ body {
 }
 
 .nav-logo { cursor: pointer; }
-.nav-logo img { height: 38px; display: block; }
+.nav-logo img { height: 38px; width: auto; display: block; }
 
 .nav-links {
   display: flex;
@@ -1323,6 +1323,7 @@ body {
 
 .footer-brand img {
   height: 36px;
+  width: auto;
   margin-bottom: 16px;
 }
 
