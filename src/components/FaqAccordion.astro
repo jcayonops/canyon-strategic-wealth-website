@@ -1,0 +1,53 @@
+---
+interface Props {
+  faqs: { q: string; a: string }[];
+  heading?: string;
+}
+
+const { faqs, heading = 'Frequently Asked Questions' } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section class="section" style="background:var(--gray);" aria-label="Frequently Asked Questions">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div class="section-eyebrow dark">Common Questions</div>
+    <h2 class="section-title">{heading}</h2>
+  </div>
+  <div class="faq-container">
+    {
+      faqs.map((f) => (
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            {f.q}
+            <span class="faq-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>{f.a}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const question = item.querySelector('.faq-question');
+    question?.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      question.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>
