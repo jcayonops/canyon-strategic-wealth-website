@@ -2206,10 +2206,13 @@ body {
       <div class="lead-magnet-badge">Free Guide</div>
       <h2>The Family Wealth Coordination Checklist</h2>
       <p>7 critical areas most families overlook — and how a coordinated strategy can protect your legacy. Download our complimentary guide.</p>
-      <div class="lead-magnet-form">
-        <input type="email" placeholder="Enter your email address" aria-label="Email address for guide download">
-        <a class="btn btn-gold" onclick="alert('Thank you! In a live implementation, this would subscribe you and deliver the guide to your inbox.')">Get the Free Guide <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
+      <form class="lead-magnet-form" id="guideForm" action="/api/contact" method="POST">
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <input type="hidden" name="formType" value="guide">
+        <input type="email" name="email" placeholder="Enter your email address" aria-label="Email address for guide download" required>
+        <button type="submit" class="btn btn-gold">Get the Free Guide <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      </form>
+      <p class="form-status" id="guideStatus" role="status" aria-live="polite" style="margin-top:12px;font-size:13px;min-height:1em;"></p>
       <p class="lead-magnet-disclaimer">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
     </div>
   </section>
@@ -2604,29 +2607,31 @@ body {
           </div>
         </div>
       </div>
-      <div class="contact-form">
+      <form class="contact-form" id="contactForm" action="/api/contact" method="POST">
         <h3>Send Us a Message</h3>
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+        <input type="hidden" name="formType" value="contact">
         <div class="form-row">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" id="firstName" placeholder="Your first name">
+            <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" placeholder="Your last name">
+            <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
           </div>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="your@email.com">
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
           <label for="phone">Phone (Optional)</label>
-          <input type="tel" id="phone" placeholder="(555) 555-5555">
+          <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555">
         </div>
         <div class="form-group">
           <label for="topic">What can we help with?</label>
-          <select id="topic">
+          <select id="topic" name="topic">
             <option value="">Select a topic...</option>
             <option value="planning">Financial Planning</option>
             <option value="investment">Investment Management</option>
@@ -2638,10 +2643,11 @@ body {
         </div>
         <div class="form-group">
           <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell us a little about your situation and what you're looking for..."></textarea>
+          <textarea id="message" name="message" placeholder="Tell us a little about your situation and what you're looking for..." required></textarea>
         </div>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Thank you! We will be in touch shortly.')">Send Message</button>
-      </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+        <p class="form-status" id="contactStatus" role="status" aria-live="polite" style="margin-top:14px;font-size:14px;text-align:center;min-height:1em;"></p>
+      </form>
     </div>
   </section>
 
@@ -3015,6 +3021,61 @@ function initFadeIn() {
 document.addEventListener('DOMContentLoaded', function() {
   initFadeIn();
 });
+
+// ── Lead-capture forms (contact + guide download) ───────────
+(function () {
+  function wireForm(formId, statusId, messages) {
+    var form = document.getElementById(formId);
+    var status = document.getElementById(statusId);
+    if (!form || !status) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var payload = {};
+      new FormData(form).forEach(function (value, key) { payload[key] = value; });
+      status.textContent = '';
+      if (btn && !btn.dataset.label) { btn.dataset.label = btn.innerHTML; }
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      }).then(function (result) {
+        if (result.ok) {
+          form.reset();
+          status.textContent = messages.success;
+          status.style.color = messages.successColor;
+        } else {
+          status.textContent = (result.data && result.data.error) || messages.error;
+          status.style.color = messages.errorColor;
+        }
+      }).catch(function () {
+        status.textContent = messages.error;
+        status.style.color = messages.errorColor;
+      }).then(function () {
+        if (btn) { btn.disabled = false; btn.innerHTML = btn.dataset.label; }
+      });
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    wireForm('contactForm', 'contactStatus', {
+      success: 'Thank you. Your message has been sent — we will be in touch within one business day.',
+      error: 'Something went wrong. Please email jake@canyonstrategicwealth.com or call (801) 903-8287.',
+      successColor: '#1B7A3D',
+      errorColor: '#C0392B'
+    });
+    wireForm('guideForm', 'guideStatus', {
+      success: 'Thank you. We will send the Family Wealth Coordination Checklist to your inbox shortly.',
+      error: 'Something went wrong. Please email jake@canyonstrategicwealth.com and we will send the guide.',
+      successColor: '#A7F3D0',
+      errorColor: '#FCA5A5'
+    });
+  });
+})();
 </script>
 
 </body>
