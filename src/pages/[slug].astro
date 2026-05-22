@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import { landingPages } from '../data/landingPages';
+
+export function getStaticPaths() {
+  return landingPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const calendly = 'https://calendly.com/jakecazier/discovery-meeting';
+const baseUrl = 'https://canyonstrategicwealth.com';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: page.serviceName,
+  description: page.metaDescription,
+  provider: {
+    '@type': 'FinancialService',
+    name: 'Canyon Strategic Wealth',
+    url: baseUrl,
+  },
+  areaServed: page.areaServed,
+  url: `${baseUrl}/${page.slug}`,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: page.h1,
+      item: `${baseUrl}/${page.slug}`,
+    },
+  ],
+};
+---
+
+<BaseLayout title={page.metaTitle} description={page.metaDescription}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify([serviceSchema, breadcrumbSchema])}
+    is:inline
+  />
+
+  <div class="page-header">
+    <h1>{page.h1}</h1>
+    <p>{page.heroHook}</p>
+    <div class="page-header-cta">
+      <a class="btn btn-primary" href={calendly} target="_blank" rel="noopener"
+        >Schedule a Discovery Call</a
+      >
+    </div>
+  </div>
+
+  <TrustStrip />
+
+  <section class="section">
+    <div class="landing-prose">
+      {page.intro.map((para) => <p>{para}</p>)}
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--gray);">
+    <div class="landing-prose">
+      <div class="section-eyebrow dark">{page.reframe.eyebrow}</div>
+      <h2 class="section-title">{page.reframe.heading}</h2>
+      {page.reframe.body.map((para) => <p>{para}</p>)}
+    </div>
+  </section>
+
+  {
+    page.blocks.map((block) => (
+      <section class={block.dark ? 'section section-dark' : 'section'}>
+        <div class="landing-block">
+          <div class="landing-block-head">
+            {block.eyebrow && (
+              <div class={block.dark ? 'section-eyebrow' : 'section-eyebrow dark'}>
+                {block.eyebrow}
+              </div>
+            )}
+            <h2 class={block.dark ? 'section-title light' : 'section-title'}>{block.heading}</h2>
+            {block.intro && (
+              <p class={block.dark ? 'landing-block-intro light' : 'landing-block-intro'}>
+                {block.intro}
+              </p>
+            )}
+          </div>
+          {block.numbered ? (
+            <ol class="landing-timeline">
+              {block.items.map((item) => (
+                <li class="landing-step">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <div class="landing-grid">
+              {block.items.map((item) => (
+                <div class="landing-card">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section" style="background:var(--gray);">
+    <div class="landing-prose">
+      <h2 class="section-title">{page.whoThisIsFor.heading}</h2>
+      <p>{page.whoThisIsFor.intro}</p>
+      <ul class="landing-checklist">
+        {page.whoThisIsFor.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="landing-prose">
+      <h2 class="section-title">{page.closing.heading}</h2>
+      {page.closing.body.map((para) => <p>{para}</p>)}
+      <div class="landing-prose-cta">
+        <a class="btn btn-gold" href={calendly} target="_blank" rel="noopener"
+          >Schedule a Discovery Call</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion faqs={page.faqs} />
+
+  <section class="section landing-related">
+    <h2 class="section-title" style="text-align:center;">Explore More</h2>
+    <div class="landing-related-links">
+      {page.related.map((link) => <a href={link.href}>{link.label}</a>)}
+    </div>
+  </section>
+
+  <CtaBand
+    heading="See How Canyon Fits Your Financial Life"
+    text="Schedule a complimentary, no-obligation discovery call. We'll talk through your situation and show you what coordinated looks like."
+    ctaLabel="Schedule a Discovery Call"
+  />
+</BaseLayout>

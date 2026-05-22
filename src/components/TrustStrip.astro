@@ -1,0 +1,27 @@
+---
+const stats = [
+  { value: '2017', label: 'Serving clients since' },
+  { value: '100+', label: 'Utah families' },
+  { value: '$90M+', label: 'Assets under management' },
+  { value: 'CFP®', label: 'Led by a CFP® professional' },
+  { value: 'Fiduciary', label: 'By legal obligation' },
+  { value: 'Schwab', label: 'Independent custodian' },
+];
+---
+
+<section class="trust-strip" aria-label="Canyon Strategic Wealth at a glance">
+  <div class="trust-strip-inner">
+    {
+      stats.map((s) => (
+        <div class="trust-item">
+          <div class="trust-value">{s.value}</div>
+          <div class="trust-label">{s.label}</div>
+        </div>
+      ))
+    }
+  </div>
+  <p class="trust-note">
+    Assets under management shown as of May 2026. Canyon Strategic Wealth, LLC is a registered
+    investment adviser; CRD #325175. Registration does not imply a certain level of skill or training.
+  </p>
+</section>
