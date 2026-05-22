@@ -1,0 +1,56 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/team', label: 'Team' },
+  { href: '/services', label: 'Services' },
+  { href: '/process', label: 'Our Process' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+---
+
+<nav class="nav" id="mainNav" role="navigation" aria-label="Main Navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="Canyon Strategic Wealth — home">
+      <img src="/canyon-logo-white.png" alt="Canyon Strategic Wealth" width="94" height="38" />
+    </a>
+    <div class="nav-links" id="navLinks">
+      {
+        links.map((link) => (
+          <a class={isActive(link.href) ? 'nav-link active' : 'nav-link'} href={link.href}>
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        class="nav-cta"
+        href="https://calendly.com/jakecazier/discovery-meeting"
+        target="_blank"
+        rel="noopener">Schedule a Call</a
+      >
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger?.addEventListener('click', () => {
+    const open = navLinks?.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(Boolean(open)));
+  });
+
+  // Nav shadow on scroll
+  const mainNav = document.getElementById('mainNav');
+  const onScroll = () => mainNav?.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+</script>

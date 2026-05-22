@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const faqs = [
+  {
+    q: 'What is a virtual family office?',
+    a: `A virtual family office provides the same level of comprehensive, coordinated wealth management that ultra-high-net-worth families receive from traditional family offices — but without the overhead of a dedicated in-house team. We serve as your strategic quarterback, coordinating across investments, taxes, estate planning, insurance, and more to ensure every piece of your financial life works together.`,
+  },
+  {
+    q: 'What is the minimum to work with Canyon Strategic Wealth?',
+    a: `Canyon Strategic Wealth serves families and business owners with $1 million or more in investable assets. We are best suited to clients whose financial lives have grown complex enough to benefit from coordinated, family-office-style planning across investments, taxes, estate, and risk. The clearest way to know whether we are the right fit is a complimentary discovery call.`,
+  },
+  {
+    q: 'How are your fees structured?',
+    a: `We are a fee-based advisory firm. Our primary compensation comes from advisory fees, and we may also receive compensation through certain insurance or annuity products when appropriate. We always disclose any potential conflicts of interest and act as a fiduciary. Our fee structure is transparent and typically based on a percentage of assets under management, with planning fees for comprehensive services. We'll provide a clear fee schedule during your discovery meeting.`,
+  },
+  {
+    q: 'Are you a fiduciary?',
+    a: `Yes, absolutely. As a Registered Investment Adviser, we are legally and ethically bound to act as a fiduciary at all times. This means we must always put your interests first, provide full disclosure of any potential conflicts of interest, and act with the utmost good faith and care. Our fiduciary commitment is the foundation of everything we do.`,
+  },
+  {
+    q: 'Where is my money held?',
+    a: `Your assets are held by Charles Schwab, one of the largest and most trusted custodians in the industry. We never take custody of client funds. Schwab provides independent account statements, robust security, SIPC protection, and a world-class technology platform. You always have direct access to your accounts through Schwab's online portal.`,
+  },
+  {
+    q: 'How often will I hear from my advisor?',
+    a: `Proactive communication is core to our approach. At minimum, you'll have a comprehensive annual review and seasonal strategy sessions. Beyond scheduled meetings, we reach out whenever market conditions, tax law changes, or life events warrant a conversation. You also have direct access to your advisor via phone, email, and our client portal — we respond within one business day.`,
+  },
+  {
+    q: 'What happens during the discovery call?',
+    a: `The discovery call is a complimentary, no-obligation conversation lasting about 30 minutes. We'll learn about your current financial situation, your goals, and what matters most to you. You'll learn about our approach, our process, and how we work. At the end, we'll both have a clear sense of whether working together makes sense. There's no pressure — just an honest conversation.`,
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Frequently Asked Questions | Canyon Strategic Wealth"
+  description="Answers to common questions about Canyon Strategic Wealth — our virtual family office model, who we serve, fees, fiduciary standard, and what to expect."
+>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(faqSchema)}
+    is:inline
+  />
+
+  <div class="page-header">
+    <h1>Frequently Asked Questions</h1>
+    <p>Straight answers to the questions families and business owners ask us most.</p>
+  </div>
+
+  <section class="section" style="background:var(--gray);" aria-label="Frequently Asked Questions">
+    <div class="faq-container">
+      {
+        faqs.map((f) => (
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              {f.q}
+              <span class="faq-arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer">
+              <p>{f.a}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Have a Question Not Listed Here?"
+    text="We are happy to chat — schedule a complimentary call and let's talk about your situation."
+    ctaLabel="Schedule a Call"
+  />
+
+  <script>
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      question?.addEventListener('click', () => {
+        const open = item.classList.toggle('open');
+        question.setAttribute('aria-expanded', String(open));
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+
+<BaseLayout
+  title="About | Canyon Strategic Wealth"
+  description="Canyon Strategic Wealth is a fiduciary virtual family office in Bountiful, Utah. Our story and the values that guide how we coordinate every part of your financial life."
+>
+  <div class="page-header">
+    <h1>About Canyon Strategic Wealth</h1>
+    <p>We built our practice around a simple belief: financial planning done well is deeply personal.</p>
+  </div>
+
+  <section class="section">
+    <div class="story-section">
+      <div>
+        <div class="section-eyebrow dark">Our Story</div>
+        <h2 class="section-title">Built on the Belief That<br />Planning Should Be Personal</h2>
+        <p class="section-subtitle" style="margin-bottom:20px;">Canyon Strategic Wealth was founded on the principle that every family deserves the same level of coordinated, strategic financial guidance that was once reserved for ultra-high-net-worth households.</p>
+        <p class="section-subtitle">As your virtual family office, we serve as the strategic quarterback — coordinating across investments, taxes, estate planning, risk management, and beyond. Every recommendation we make, every strategy we build, is grounded in your unique story, your goals, and what matters most to you.</p>
+        <div style="margin-top:32px;">
+          <a class="btn btn-primary" href="https://calendly.com/jakecazier/discovery-meeting" target="_blank" rel="noopener">Start a Conversation</a>
+        </div>
+      </div>
+      <div>
+        <div class="story-photo-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 8 5-5 5 15H2L8 3z" /><path d="M4.14 15.08L8 11l3 3" /></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div style="text-align:center;margin-bottom:48px;position:relative;z-index:2;">
+      <div class="section-eyebrow">Our Values</div>
+      <h2 class="section-title light">What Guides Everything We Do</h2>
+    </div>
+    <div class="values-detail-grid">
+      <div class="value-detail-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.125em"><line x1="6" y1="3" x2="6" y2="17" /><line x1="18" y1="3" x2="18" y2="17" /><line x1="12" y1="3" x2="12" y2="17" /><path d="M2 17h20" /><path d="M2 20h20" /><path d="M4 3h16" /></svg> Fiduciary First</h3>
+        <p>We are legally and ethically required to act in your best interest — always. This isn't a marketing statement; it's the foundation of our practice and every recommendation we make.</p>
+      </div>
+      <div class="value-detail-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.125em"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg> Transparency</h3>
+        <p>No hidden fees, no surprises, no fine print. We clearly explain every recommendation and cost so you always understand exactly what you're paying and why.</p>
+      </div>
+      <div class="value-detail-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.125em"><path d="M11 17l-1.5 1.5a2.12 2.12 0 01-3 0L4 16a2.12 2.12 0 010-3l1-1" /><path d="M13 7l1.5-1.5a2.12 2.12 0 013 0L20 8a2.12 2.12 0 010 3l-1 1" /><path d="M8 12l4 4" /><path d="M12 8l4 4" /><path d="M3.5 11L8 6.5" /><path d="M16 17.5L20.5 13" /></svg> Long-Term Partnership</h3>
+        <p>We grow with you — through life changes, market shifts, and every milestone ahead. This isn't a transactional relationship; it's a partnership built for decades.</p>
+      </div>
+      <div class="value-detail-card">
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-0.125em"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg> Personalized Strategy</h3>
+        <p>Your financial plan is built for your life — not templated from a shelf. We take the time to understand your unique story and design strategies around what matters most to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Ready to Join the Canyon Family?"
+    text="Schedule a complimentary discovery call and let's explore how we can help."
+    ctaLabel="Schedule Your Discovery Call"
+  />
+</BaseLayout>
