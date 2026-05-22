@@ -2304,3 +2304,144 @@ body {
   .sticky-cta { right: 16px; bottom: 16px; padding: 12px 20px; font-size: 13px; }
 }
 
+/* ════════════════════════════════════════════════════════════════
+   POLISH PASS — SCHEDULE PAGE, MOTION, LANDSCAPE IMAGERY
+   ════════════════════════════════════════════════════════════════ */
+
+/* Schedule page — two-column form + calendar */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.schedule-col { position: relative; }
+
+.schedule-col-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--sky-pale);
+  color: var(--navy);
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.schedule-col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.schedule-col-intro {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.schedule-form .optional {
+  color: var(--text-light);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+@media (max-width: 968px) {
+  .schedule-grid { grid-template-columns: 1fr; gap: 64px; }
+}
+
+/* Hero — slowly rotating decorative rings */
+.geo-ring { animation: gentleSpin 60s linear infinite; }
+.geo-ring:nth-of-type(2) { animation-duration: 90s; animation-direction: reverse; }
+.geo-ring:nth-of-type(3) { animation-duration: 120s; }
+
+@keyframes gentleSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Hero scroll indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+  animation: scrollBounce 2.4s ease-in-out infinite;
+}
+
+.hero-scroll-indicator:hover { color: var(--sky); }
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.5; }
+  50% { transform: translate(-50%, 6px); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .hero-scroll-indicator { display: none; }
+}
+
+/* Process timeline — the existing ::before line becomes a faint background,
+   and an ::after gradient line fills as the user scrolls (height set via the
+   --progress CSS variable from JS). */
+.process-timeline { --progress: 0%; }
+.process-timeline::before { background: rgba(27,58,92,0.08) !important; }
+.process-timeline::after {
+  content: '';
+  position: absolute;
+  left: 32px;
+  top: 0;
+  width: 2px;
+  height: var(--progress);
+  background: linear-gradient(to bottom, var(--sky), var(--gold));
+  transition: height 0.15s linear;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Staggered reveal for the process steps as they enter the viewport. */
+.process-step:nth-child(2).fade-in.visible { transition-delay: 0.06s; }
+.process-step:nth-child(3).fade-in.visible { transition-delay: 0.12s; }
+.process-step:nth-child(4).fade-in.visible { transition-delay: 0.18s; }
+.process-step:nth-child(5).fade-in.visible { transition-delay: 0.24s; }
+.process-step:nth-child(6).fade-in.visible { transition-delay: 0.3s; }
+
+/* Landscape accent strip — full-bleed Wasatch imagery with brand overlay */
+.landscape-accent {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.landscape-accent::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(18,40,68,0.42) 0%, rgba(18,40,68,0.65) 100%);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .geo-ring,
+  .hero-scroll-indicator { animation: none; }
+  .process-timeline::after { transition: none; }
+  .fade-in { transition: none; opacity: 1; transform: none; }
+}
+

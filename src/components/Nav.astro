@@ -26,12 +26,7 @@ const isActive = (href: string) =>
           </a>
         ))
       }
-      <a
-        class="nav-cta"
-        href="https://calendly.com/jakecazier/discovery-meeting"
-        target="_blank"
-        rel="noopener">Schedule a Call</a
-      >
+      <a class="nav-cta" href="/schedule">Schedule a Call</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -40,17 +35,38 @@ const isActive = (href: string) =>
 </nav>
 
 <script>
-  // Mobile menu toggle
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-  hamburger?.addEventListener('click', () => {
-    const open = navLinks?.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', String(Boolean(open)));
-  });
+  function setupNav() {
+    const hamburger = document.getElementById('hamburger') as HTMLElement | null;
+    const navLinks = document.getElementById('navLinks');
+    const mainNav = document.getElementById('mainNav');
 
-  // Nav shadow on scroll
-  const mainNav = document.getElementById('mainNav');
-  const onScroll = () => mainNav?.classList.toggle('scrolled', window.scrollY > 20);
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+    if (hamburger && hamburger.dataset.bound !== '1') {
+      hamburger.dataset.bound = '1';
+      hamburger.addEventListener('click', () => {
+        const open = navLinks?.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', String(Boolean(open)));
+      });
+    }
+
+    // Close the mobile menu when a link is clicked.
+    navLinks?.querySelectorAll('a').forEach((a) => {
+      const el = a as HTMLElement;
+      if (el.dataset.bound === '1') return;
+      el.dataset.bound = '1';
+      el.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const onScroll = () =>
+      mainNav?.classList.toggle('scrolled', window.scrollY > 20);
+    onScroll();
+    const w = window as unknown as { __canyonNavScroll?: boolean };
+    if (!w.__canyonNavScroll) {
+      w.__canyonNavScroll = true;
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+  document.addEventListener('astro:page-load', setupNav);
 </script>

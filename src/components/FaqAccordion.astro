@@ -43,11 +43,17 @@ const faqSchema = {
 </section>
 
 <script>
-  document.querySelectorAll('.faq-item').forEach((item) => {
-    const question = item.querySelector('.faq-question');
-    question?.addEventListener('click', () => {
-      const open = item.classList.toggle('open');
-      question.setAttribute('aria-expanded', String(open));
+  function setupFaq() {
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const el = item as HTMLElement;
+      if (el.dataset.bound === '1') return;
+      el.dataset.bound = '1';
+      const question = el.querySelector('.faq-question');
+      question?.addEventListener('click', () => {
+        const open = el.classList.toggle('open');
+        question.setAttribute('aria-expanded', String(open));
+      });
     });
-  });
+  }
+  document.addEventListener('astro:page-load', setupFaq);
 </script>

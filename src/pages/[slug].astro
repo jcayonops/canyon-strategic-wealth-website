@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
-const calendly = 'https://calendly.com/jakecazier/discovery-meeting';
+const scheduleHref = '/schedule';
 const baseUrl = 'https://canyonstrategicwealth.com';
 
 const serviceSchema = {
@@ -57,9 +57,7 @@ const breadcrumbSchema = {
     <h1>{page.h1}</h1>
     <p>{page.heroHook}</p>
     <div class="page-header-cta">
-      <a class="btn btn-primary" href={calendly} target="_blank" rel="noopener"
-        >Schedule a Discovery Call</a
-      >
+      <a class="btn btn-primary" href={scheduleHref}>Schedule a Discovery Call</a>
     </div>
   </div>
 
@@ -135,9 +133,7 @@ const breadcrumbSchema = {
       <h2 class="section-title">{page.closing.heading}</h2>
       {page.closing.body.map((para) => <p>{para}</p>)}
       <div class="landing-prose-cta">
-        <a class="btn btn-gold" href={calendly} target="_blank" rel="noopener"
-          >Schedule a Discovery Call</a
-        >
+        <a class="btn btn-gold" href={scheduleHref}>Schedule a Discovery Call</a>
       </div>
     </div>
   </section>

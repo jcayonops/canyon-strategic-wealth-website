@@ -1,8 +1,17 @@
 ---
-const stats = [
-  { value: '2017', label: 'Serving clients since' },
-  { value: '100+', label: 'Utah families' },
-  { value: '$90M+', label: 'Assets under management' },
+type Stat = {
+  value: string;
+  label: string;
+  countTo?: number;
+  from?: number;
+  prefix?: string;
+  suffix?: string;
+};
+
+const stats: Stat[] = [
+  { value: '2017', label: 'Serving clients since', countTo: 2017, from: 2000 },
+  { value: '100+', label: 'Utah families', countTo: 100, suffix: '+' },
+  { value: '$90M+', label: 'Assets under management', countTo: 90, prefix: '$', suffix: 'M+' },
   { value: 'CFP®', label: 'Led by a CFP® professional' },
   { value: 'Fiduciary', label: 'By legal obligation' },
   { value: 'Schwab', label: 'Independent custodian' },
@@ -14,7 +23,15 @@ const stats = [
     {
       stats.map((s) => (
         <div class="trust-item">
-          <div class="trust-value">{s.value}</div>
+          <div
+            class="trust-value"
+            data-count-to={s.countTo}
+            data-from={s.from}
+            data-prefix={s.prefix}
+            data-suffix={s.suffix}
+          >
+            {s.value}
+          </div>
           <div class="trust-label">{s.label}</div>
         </div>
       ))
