@@ -1,18 +1,16 @@
 ---
-// Placeholder homepage — the real homepage is rebuilt in Stage A (core pages).
-// This exists only so the Astro project builds during scaffolding.
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Canyon Strategic Wealth</title>
-  </head>
-  <body>
+<BaseLayout
+  title="Canyon Strategic Wealth — Private Wealth Advisory & Virtual Family Office"
+  description="Canyon Strategic Wealth is a fee-only fiduciary virtual family office in Bountiful, Utah, serving families and business owners with $1M+ in investable assets."
+>
+  <section class="section" style="padding-top:140px;text-align:center;">
     <h1>Canyon Strategic Wealth</h1>
-    <p>Website rebuild in progress.</p>
-  </body>
-</html>
+    <p class="section-subtitle" style="margin:16px auto 0;">
+      Shared layout, navigation, and footer are in place. The full homepage content is rebuilt
+      next, in the core-pages stage.
+    </p>
+  </section>
+</BaseLayout>

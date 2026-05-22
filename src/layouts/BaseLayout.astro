@@ -1,0 +1,156 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = new URL(Astro.url.pathname, Astro.site).href,
+  ogTitle = title,
+  ogDescription = description,
+  ogType = 'website',
+} = Astro.props;
+
+const gaId = import.meta.env.PUBLIC_GA_ID;
+
+// Sitewide structured data (FinancialService is a LocalBusiness subtype).
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FinancialService',
+  '@id': 'https://canyonstrategicwealth.com/#organization',
+  name: 'Canyon Strategic Wealth',
+  description:
+    'Fee-only fiduciary private wealth advisory and virtual family office serving Utah families and business owners with $1M+ in investable assets.',
+  url: 'https://canyonstrategicwealth.com',
+  telephone: '+1-801-903-8287',
+  email: 'jake@canyonstrategicwealth.com',
+  logo: 'https://canyonstrategicwealth.com/canyon-logo.png',
+  image: 'https://canyonstrategicwealth.com/canyon-logo.png',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '450 S 400 E',
+    addressLocality: 'Bountiful',
+    addressRegion: 'UT',
+    postalCode: '84010',
+    addressCountry: 'US',
+  },
+  foundingDate: '2017',
+  founder: {
+    '@type': 'Person',
+    name: 'Jake Cazier',
+    jobTitle: 'Private Wealth Advisor & Owner',
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Professional Certification',
+      name: 'CERTIFIED FINANCIAL PLANNER (CFP)',
+    },
+  },
+  areaServed: [
+    'Bountiful, UT',
+    'Centerville, UT',
+    'Farmington, UT',
+    'Kaysville, UT',
+    'Salt Lake City, UT',
+    'Davis County, UT',
+  ],
+  serviceType: [
+    'Investment Management',
+    'Financial Planning',
+    'Tax Strategy',
+    'Estate Planning',
+    'Risk Management',
+    'Business Owner Advisory',
+  ],
+  priceRange: '$$$$',
+  sameAs: ['https://adviserinfo.sec.gov/firm/summary/325175'],
+  knowsAbout: [
+    'Wealth Management',
+    'Virtual Family Office',
+    'Financial Planning',
+    'Investment Advisory',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Canyon Strategic Wealth" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:site_name" content="Canyon Strategic Wealth" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Sitewide structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} is:inline />
+
+    <!-- Per-page structured data and head extras -->
+    <slot name="head" />
+
+    {
+      gaId && (
+        <>
+          <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <script is:inline define:vars={{ gaId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', gaId);
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+
+    <script>
+      // Fade-in on scroll — preserved from the original site.
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

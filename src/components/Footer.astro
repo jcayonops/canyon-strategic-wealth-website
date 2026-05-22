@@ -1,0 +1,65 @@
+---
+const year = new Date().getFullYear();
+const fineLink =
+  'font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;';
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="/canyon-logo-white.png" alt="Canyon Strategic Wealth" width="1018" height="412" />
+      <p>
+        Your virtual family office — coordinating every aspect of your financial life with care,
+        transparency, and strategy.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/services">Services</a>
+      <a href="/process">Our Process</a>
+      <a href="/contact">Contact</a>
+      <a href="/insights">Insights</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="/services">Investment Management</a>
+      <a href="/services">Financial Planning</a>
+      <a href="/services">Tax Strategy</a>
+      <a href="/services">Estate Planning</a>
+      <a href="/services">Risk Management</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="mailto:jake@canyonstrategicwealth.com">jake@canyonstrategicwealth.com</a>
+      <a href="tel:+18019038287">(801) 903-8287</a>
+      <a
+        href="https://calendly.com/jakecazier/discovery-meeting"
+        target="_blank"
+        rel="noopener">Schedule a Call</a
+      >
+    </div>
+  </div>
+  <div class="footer-bottom" style="flex-direction:column;gap:16px;text-align:center;">
+    <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+      <a href="/privacy" style={fineLink}>Privacy Policy</a>
+      <a href="/disclosures" style={fineLink}>Important Disclosures</a>
+      <a
+        href="https://adviserinfo.sec.gov/firm/summary/325175"
+        target="_blank"
+        rel="noopener"
+        style={fineLink}>ADV &amp; BrokerCheck</a
+      >
+      <a href="/insights" style={fineLink}>Insights</a>
+    </div>
+    <p>&#169; {year} Canyon Strategic Wealth, LLC. All rights reserved.</p>
+    <p
+      style="font-size:10px;color:rgba(255,255,255,0.2);max-width:700px;margin:0 auto;line-height:1.7;">
+      Canyon Strategic Wealth is a registered investment adviser. Registration does not imply a
+      certain level of skill or training. This website is for informational purposes only and does
+      not constitute financial, tax, or legal advice. Past performance is not indicative of future
+      results. Investing involves risk, including the possible loss of principal.
+    </p>
+  </div>
+</footer>
