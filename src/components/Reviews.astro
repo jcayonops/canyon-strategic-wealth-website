@@ -1,0 +1,46 @@
+---
+import { reviews } from '../data/reviews';
+---
+
+{
+  reviews.length > 0 && (
+    <section class="section" style="background:var(--gray);" aria-label="Client Reviews">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div class="section-eyebrow dark">In Their Words</div>
+        <h2 class="section-title">What Our Clients Say</h2>
+      </div>
+      <div class="reviews-grid">
+        {reviews.map((r) => (
+          <div class="review-card">
+            <div class="review-stars" aria-label={`Rated ${r.rating} out of 5`}>
+              {Array.from({ length: r.rating }).map(() => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              ))}
+            </div>
+            <p class="review-text">{r.text}</p>
+            <div class="review-meta">
+              <span class="review-name">{r.name}</span>
+              <span class="review-source">via {r.source}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="reviews-disclosure">
+        All reviews shown are from current clients of Canyon Strategic Wealth, LLC, who
+        consented to their use. No cash or non-cash compensation was provided in exchange for
+        any review. These reviews reflect the experience of the individual clients quoted; they
+        may not be representative of the experience of other clients, and they are not a
+        guarantee of future performance or success.
+      </p>
+    </section>
+  )
+}
