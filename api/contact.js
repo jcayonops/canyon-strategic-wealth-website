@@ -60,6 +60,9 @@ export default async function handler(req, res) {
   const topic = String(body.topic || '').trim();
   const audienceType = String(body.audienceType || '').trim();
   const message = String(body.message || '').trim();
+  // Unchecked checkboxes are omitted from the payload, so anything truthy here
+  // means the visitor affirmatively opted in to text messages.
+  const smsConsent = Boolean(body.smsConsent);
 
   if (isSchedule) {
     if (!fullName || !phone) {
@@ -112,6 +115,9 @@ export default async function handler(req, res) {
     ['Name', fullName],
     ['Email', email],
     ['Phone', phone],
+    // Opt-in record for 10DLC/TCR compliance - only meaningful when a number
+    // was supplied.
+    ['SMS consent', phone ? (smsConsent ? 'Yes - opted in via ' + formLabel : 'No - do not text') : ''],
     ['Audience', audienceDisplay],
     ['Topic', topic],
     ['Message', message],
