@@ -100,7 +100,7 @@ const paidFaq: LandingFaq = {
 
 const fiduciaryFaq: LandingFaq = {
   q: 'Are you actually a fiduciary?',
-  a: "Yes. Canyon Strategic Wealth is a registered investment adviser, which carries a fiduciary obligation to act in your best interest. You can verify our registration on the SEC's investment adviser public disclosure site under CRD #325175.",
+  a: "Yes. Advisory services are offered through Portside Wealth Group, LLC, a Registered Investment Adviser, which carries a fiduciary obligation to act in your best interest. You can verify that registration on the SEC's investment adviser public disclosure site.",
 };
 
 const firstMeetingFaq: LandingFaq = {
@@ -121,7 +121,7 @@ export const landingPages: LandingPage[] = [
     heroHook:
       'Your financial life has more moving parts than a single account statement can hold — a business, a portfolio, equity, real estate, a tax bill that climbs every year. Canyon Strategic Wealth is a virtual family office in Bountiful, built for families and business owners with $1 million or more in investable assets.',
     intro: [
-      `Canyon Strategic Wealth is an independent, fiduciary registered investment adviser headquartered in Bountiful at 450 S 400 E. We were founded in 2017, and today we coordinate the financial lives of more than 100 families across Davis County and the greater Salt Lake area.`,
+      `Canyon Strategic Wealth is an independent, fiduciary wealth advisory practice headquartered in Bountiful at 450 S 400 E. We were founded in 2017, and today we coordinate the financial lives of more than 100 families across Davis County and the greater Salt Lake area.`,
       `Bountiful is well served by financial professionals — but most of them do one thing. A brokerage sells investments. A retirement shop sells an income plan. An insurance office sells policies. What is missing is the person who sits above all of it, connecting your investments, your taxes, your estate plan, your insurance, and your business into one strategy that actually fits together. That is the role we play.`,
       `Our advisor, Jake Cazier, is a CERTIFIED FINANCIAL PLANNER™ professional. As a fiduciary, the firm is obligated to put your interests first — not sometimes, but in every recommendation we make. Your assets are held at Charles Schwab, an independent custodian, so the people advising you are never the people holding your money.`,
     ],
@@ -203,7 +203,7 @@ export const landingPages: LandingPage[] = [
     heroHook:
       'Centerville sits in the middle of one of Utah’s most established communities — and the financial advice available locally is mostly national brokerages and retirement-income shops. Canyon Strategic Wealth offers something different: a fiduciary virtual family office for Centerville families and business owners with $1 million or more in investable assets.',
     intro: [
-      `Canyon Strategic Wealth serves Centerville from our office in neighboring Bountiful, just a few minutes south. We are an independent, fiduciary registered investment adviser, founded in 2017, and we coordinate the financial lives of more than 100 families across Davis County.`,
+      `Canyon Strategic Wealth serves Centerville from our office in neighboring Bountiful, just a few minutes south. We are an independent, fiduciary wealth advisory practice, founded in 2017, and we coordinate the financial lives of more than 100 families across Davis County.`,
       `Centerville is a quiet, affluent community — long settled, with a high share of established households and successful professionals and business owners. What it does not have is a wealth advisor positioned the way the ultra-wealthy are served: a single team coordinating investments, tax, estate, and insurance as one plan. The advisors with a Centerville footprint are largely branches of national firms. Canyon fills that gap.`,
       `Our advisor, Jake Cazier, is a CERTIFIED FINANCIAL PLANNER™ professional, and the firm is held to a fiduciary standard — obligated to put your interests first in every recommendation. Client assets are custodied at Charles Schwab, an independent custodian.`,
     ],
@@ -441,7 +441,7 @@ export const landingPages: LandingPage[] = [
     intro: [
       `A traditional family office is a private team — investment, tax, legal, and administrative professionals — dedicated to a single wealthy family. It is how families with hundreds of millions of dollars keep their financial lives coordinated. It is also expensive to run, which has always put it out of reach for everyone else.`,
       `A virtual family office delivers the same idea in a different structure. Instead of hiring a full team in-house, you work with one coordinating firm that holds your entire financial picture and brings the right specialists — your CPA, your estate attorney, insurance specialists — to the same table. You get family-office coordination without the family-office overhead.`,
-      `That is what Canyon Strategic Wealth is. We are an independent, fiduciary registered investment adviser, founded in 2017 and based in Bountiful, Utah, serving more than 100 families across the state. Our advisor, Jake Cazier, is a CERTIFIED FINANCIAL PLANNER™ professional.`,
+      `That is what Canyon Strategic Wealth is. We are an independent, fiduciary wealth advisory practice, founded in 2017 and based in Bountiful, Utah, serving more than 100 families across the state. Our advisor, Jake Cazier, is a CERTIFIED FINANCIAL PLANNER™ professional.`,
     ],
     reframe: {
       eyebrow: 'Rethinking the Threshold',
@@ -571,7 +571,7 @@ export const landingPages: LandingPage[] = [
     intro: [
       `For most business owners, the company is the single largest asset they will ever own — and selling or transitioning it is the largest financial event of their life. Yet the planning around an exit usually starts far too late, and focuses almost entirely on the deal itself.`,
       `There is no shortage of help for the transaction. Business brokers and M&A advisors find buyers and negotiate terms. Attorneys paper the deal. What is routinely missing is the person responsible for the owner's wealth — the tax exposure on the sale, the estate consequences, the structure of the proceeds, and the plan for the life that comes after.`,
-      `That is the work Canyon Strategic Wealth does. We are an independent, fiduciary registered investment adviser and a virtual family office based in Bountiful, Utah. We do not sell businesses; we coordinate everything around the owner, so that when the sale closes you keep more of what you built and know exactly what happens next.`,
+      `That is the work Canyon Strategic Wealth does. We are an independent, fiduciary wealth advisory practice and a virtual family office based in Bountiful, Utah. We do not sell businesses; we coordinate everything around the owner, so that when the sale closes you keep more of what you built and know exactly what happens next.`,
     ],
     reframe: {
       eyebrow: 'The Real Problem',
@@ -697,13 +697,13 @@ export const landingPages: LandingPage[] = [
     slug: 'fiduciary-financial-advisor-utah',
     metaTitle: 'Fiduciary Financial Advisor in Utah | Canyon Strategic Wealth',
     metaDescription:
-      'What "fiduciary" really means, how to verify any advisor’s standard, and how Canyon Strategic Wealth — a fiduciary RIA and virtual family office in Utah — is structured.',
+      'What "fiduciary" really means, how to verify any advisor’s standard, and how Canyon Strategic Wealth — a fiduciary virtual family office in Utah — is structured.',
     h1: 'Fiduciary Financial Advisor in Utah',
     heroHook:
-      '"Fiduciary" is one of the most important words in finance and one of the most misused. It is a legal standard, not a marketing slogan — and knowing the difference protects your wealth. Canyon Strategic Wealth is a fiduciary registered investment adviser serving families across Utah.',
+      '"Fiduciary" is one of the most important words in finance and one of the most misused. It is a legal standard, not a marketing slogan — and knowing the difference protects your wealth. Canyon Strategic Wealth is a fiduciary wealth advisory practice serving families across Utah.',
     intro: [
       `If you have ever wondered whether the person advising you is required to act in your interest — or merely allowed to act in their own — you have already understood why the fiduciary question matters.`,
-      `Canyon Strategic Wealth is an independent, fiduciary registered investment adviser, founded in 2017 and based in Bountiful, Utah. As a registered investment adviser, the firm is held to a fiduciary standard: a legal obligation to act in our clients' best interest. Our advisor, Jake Cazier, is a CERTIFIED FINANCIAL PLANNER™ professional, a credential that carries its own fiduciary commitment.`,
+      `Canyon Strategic Wealth is an independent, fiduciary wealth advisory practice, founded in 2017 and based in Bountiful, Utah. Advisory services are offered through Portside Wealth Group, LLC, a Registered Investment Adviser, and our advisors are held to a fiduciary standard: a legal obligation to act in our clients' best interest. Our advisor, Jake Cazier, is a CERTIFIED FINANCIAL PLANNER™ professional, a credential that carries its own fiduciary commitment.`,
       `This page explains what the fiduciary standard actually is, how it differs from the weaker standard much of the industry operates under, how to verify any advisor's standard for yourself, and — plainly — how Canyon is structured.`,
     ],
     reframe: {
@@ -751,8 +751,8 @@ export const landingPages: LandingPage[] = [
         dark: true,
         items: [
           {
-            title: 'A registered investment adviser',
-            body: "Canyon Strategic Wealth is registered as an investment adviser and is held to a fiduciary standard. You can verify the firm under CRD #325175 on the SEC's adviser site.",
+            title: 'Backed by a registered investment adviser',
+            body: "Advisory services are offered through Portside Wealth Group, LLC, a Registered Investment Adviser, and our advisors are held to a fiduciary standard. You can verify the firm on the SEC's adviser site.",
           },
           {
             title: 'Led by a CFP professional',
@@ -794,11 +794,11 @@ export const landingPages: LandingPage[] = [
       },
       {
         q: 'Is every financial advisor a fiduciary?',
-        a: 'No. Many financial professionals operate under a suitability standard, which only requires that a recommendation be suitable — not that it be the best available option for you. Registered investment advisers, including Canyon Strategic Wealth, are held to a fiduciary standard.',
+        a: 'No. Many financial professionals operate under a suitability standard, which only requires that a recommendation be suitable — not that it be the best available option for you. Registered investment advisers, including Portside Wealth Group, LLC — through which Canyon Strategic Wealth offers advisory services — are held to a fiduciary standard.',
       },
       {
         q: 'Is Canyon Strategic Wealth a fiduciary?',
-        a: "Yes. Canyon is a registered investment adviser, held to a fiduciary standard, and our advisor is a CFP professional. You can verify the firm's registration under CRD #325175 on the SEC's investment adviser public disclosure site.",
+        a: "Yes. Advisory services are offered through Portside Wealth Group, LLC, a Registered Investment Adviser, our advisors are held to a fiduciary standard, and our advisor is a CFP professional. You can verify the firm's registration on the SEC's investment adviser public disclosure site.",
       },
       {
         q: 'Is Canyon a fee-only firm?',
@@ -836,7 +836,7 @@ export const landingPages: LandingPage[] = [
     intro: [
       `If you are researching wealth management in Davis County — Bountiful, Centerville, Farmington, Kaysville, or anywhere along the corridor — you are doing exactly the right thing. A household with $1 million or more in investable assets is making a decision that compounds for decades.`,
       `Rather than claim a title, this page does something more useful: it gives you six criteria for evaluating any wealth management firm, and a concrete way to verify each one. Use it on every firm you are considering. We have included how Canyon Strategic Wealth measures up against each criterion — verifiable, not asserted — so you can hold us to the same standard as everyone else.`,
-      `Canyon Strategic Wealth is an independent, fiduciary registered investment adviser and virtual family office, founded in 2017 and based in Bountiful. The point of this page is not to tell you we are the best. It is to make you a sharper buyer.`,
+      `Canyon Strategic Wealth is an independent, fiduciary wealth advisory practice and virtual family office, founded in 2017 and based in Bountiful. The point of this page is not to tell you we are the best. It is to make you a sharper buyer.`,
     ],
     reframe: {
       eyebrow: 'A Better Question',
@@ -856,7 +856,7 @@ export const landingPages: LandingPage[] = [
         items: [
           {
             title: 'A fiduciary standard',
-            body: "The firm should be legally obligated to act in your best interest, all of the time. To verify: confirm the firm is a registered investment adviser on the SEC's adviser site, and ask for the answer in writing. Canyon is a registered investment adviser held to a fiduciary standard, verifiable under CRD #325175.",
+            body: "The firm should be legally obligated to act in your best interest, all of the time. To verify: confirm the firm is a registered investment adviser on the SEC's adviser site, and ask for the answer in writing. Canyon offers advisory services through Portside Wealth Group, LLC, a Registered Investment Adviser, and our advisors are held to a fiduciary standard.",
           },
           {
             title: 'Real credentials',
@@ -940,7 +940,7 @@ export const landingPages: LandingPage[] = [
       },
       {
         q: 'How does Canyon Strategic Wealth measure up against these criteria?',
-        a: 'Canyon is a registered investment adviser held to a fiduciary standard (CRD #325175), led by a CFP professional, fee-based with full disclosure of any commissions, structured as a virtual family office that coordinates tax, estate, and insurance alongside investments, and using Charles Schwab as an independent custodian. We encourage you to verify each point — and to apply the same test to every firm you consider.',
+        a: 'Canyon offers advisory services through Portside Wealth Group, LLC, a Registered Investment Adviser, is held to a fiduciary standard, led by a CFP professional, fee-based with full disclosure of any commissions, structured as a virtual family office that coordinates tax, estate, and insurance alongside investments, and using Charles Schwab as an independent custodian. We encourage you to verify each point — and to apply the same test to every firm you consider.',
       },
       paidFaq,
     ],

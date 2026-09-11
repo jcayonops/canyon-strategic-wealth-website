@@ -2,11 +2,12 @@
 
 > Canyon Strategic Wealth is a fee-based, fiduciary private wealth advisory firm and virtual family office in Bountiful, Utah, serving high-net-worth families and business owners. It acts as a strategic quarterback, coordinating investment management, financial planning, tax strategy, estate planning, and risk management.
 
-Canyon Strategic Wealth, LLC is a Registered Investment Adviser led by Jake Cazier, CFP. The firm operates as a virtual family office: rather than managing each part of a family's financial life in isolation, it coordinates investments, taxes, estate planning, insurance, and planning alongside the client's other professionals, such as CPAs and attorneys.
+Canyon Strategic Wealth is a wealth advisory practice led by Jake Cazier, CFP. Advisory services are offered through Portside Wealth Group, LLC, a Registered Investment Adviser. The practice operates as a virtual family office: rather than managing each part of a family's financial life in isolation, it coordinates investments, taxes, estate planning, insurance, and planning alongside the client's other professionals, such as CPAs and attorneys.
 
 ## Key facts
 
-- Firm: Canyon Strategic Wealth, LLC, a Registered Investment Adviser (RIA)
+- Firm: Canyon Strategic Wealth, LLC
+- Registered investment adviser: Portside Wealth Group, LLC (advisory services are offered through Portside; Canyon Strategic Wealth is not itself the RIA)
 - Lead advisor: Jake Cazier, CERTIFIED FINANCIAL PLANNER (CFP) professional
 - Office: 450 S 400 E, Bountiful, UT 84010
 - Serves: high-net-worth families and business owners, primarily across Bountiful, Salt Lake City, and the greater Wasatch Front in Utah
@@ -36,4 +37,4 @@ A virtual family office delivers the comprehensive, coordinated wealth managemen
 
 ## Disclosures
 
-Canyon Strategic Wealth, LLC is a Registered Investment Adviser. Registration does not imply a certain level of skill or training. Past performance is not indicative of future results; all investing involves risk, including the possible loss of principal. The firm does not provide tax or legal advice. See https://canyonstrategicwealth.com for full disclosures.
+Advisory services are offered through Portside Wealth Group, LLC, a Registered Investment Adviser. Canyon Strategic Wealth is a DBA of Portside Wealth Group, LLC. Registration does not imply a certain level of skill or training. Past performance is not indicative of future results; all investing involves risk, including the possible loss of principal. The firm does not provide tax or legal advice. See https://canyonstrategicwealth.com for full disclosures.

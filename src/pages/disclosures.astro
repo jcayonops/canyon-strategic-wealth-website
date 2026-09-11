@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { ADVISORY_SERVICES_LINE, RIA_NAME, WEBSITE_DISCLOSURE } from '../data/compliance';
 ---
 
 <BaseLayout
   title="Important Disclosures | Canyon Strategic Wealth"
-  description="Regulatory information and important notices for clients and prospective clients of Canyon Strategic Wealth, a Registered Investment Adviser."
+  description="Regulatory information and important notices for clients and prospective clients of Canyon Strategic Wealth."
 >
   <div class="page-header">
     <h1>Important Disclosures</h1>
@@ -12,23 +13,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
   <section class="section">
     <div class="compliance-content">
-      <h3>Registered Investment Adviser</h3>
+      <h3>Investment Advisory Services</h3>
       <p>
-        Canyon Strategic Wealth, LLC is a Registered Investment Adviser. Registration with the SEC
-        or any state securities authority does not imply a certain level of skill or training.
-        Additional information about Canyon Strategic Wealth, including its advisory services, fees,
-        and business practices, is available through the Investment Adviser Public Disclosure
-        (IAPD) database at
-        <a href="https://adviserinfo.sec.gov/firm/summary/325175" target="_blank" rel="noopener"
-          >adviserinfo.sec.gov</a
+        {ADVISORY_SERVICES_LINE} Registration with the SEC or any state securities authority does
+        not imply a certain level of skill or training. Additional information about {RIA_NAME},
+        including its advisory services, fees, and business practices, is available through the
+        Investment Adviser Public Disclosure (IAPD) database at
+        <a href="https://adviserinfo.sec.gov" target="_blank" rel="noopener">adviserinfo.sec.gov</a
         >.
       </p>
 
       <h3>Fiduciary Duty</h3>
       <p>
-        As a registered investment adviser, Canyon Strategic Wealth has a fiduciary duty to act in
-        the best interest of our clients. This fiduciary duty is a fundamental principle of our firm
-        and guides all of our actions and recommendations.
+        Investment advisory services are provided by investment adviser representatives who owe a
+        fiduciary duty to act in the best interest of their clients. This fiduciary duty is a
+        fundamental principle of our practice and guides all of our actions and recommendations.
       </p>
 
       <h3>No Guarantee of Results</h3>
@@ -58,10 +57,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <h3>Form ADV</h3>
       <p>
-        A copy of our Form ADV Part 2A (Firm Brochure) and Part 2B (Brochure Supplement) is
-        available upon request and is filed with the SEC. These documents provide detailed
-        information about our qualifications, business practices, and fees. To request a copy,
-        please contact us at
+        Copies of the Form ADV Part 2A (Firm Brochure), Part 2B (Brochure Supplement), and Form CRS
+        (Client Relationship Summary) for {RIA_NAME} are linked at the bottom of every page of this
+        site and are filed with the SEC. These documents provide detailed information about
+        qualifications, business practices, and fees. You may also request a copy at
         <a href="mailto:jake@canyonstrategicwealth.com">jake@canyonstrategicwealth.com</a>.
       </p>
 
@@ -71,6 +70,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         represent the experience of all clients and are not indicative of future performance or
         success. Any testimonials would be provided voluntarily and without compensation.
       </p>
+
+      {
+        WEBSITE_DISCLOSURE && (
+          <Fragment>
+            <h3>Website Disclosure</h3>
+            <p>{WEBSITE_DISCLOSURE}</p>
+          </Fragment>
+        )
+      }
 
       <p style="margin-top:40px;font-size:12px;color:var(--text-light);">
         Last updated: February 2026

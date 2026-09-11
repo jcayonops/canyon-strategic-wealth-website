@@ -177,8 +177,9 @@ what tells you something.
 
 In the spirit of the standard we are recommending you apply to anyone:
 
-- **A registered investment adviser**, held to a fiduciary standard. You
-  can verify the firm under **CRD #325175** on the SEC's adviser site.
+- **Advisory services offered through Portside Wealth Group, LLC**, a registered
+  investment adviser, with our advisors held to a fiduciary standard. You
+  can verify the firm on the SEC's adviser site.
 - **Led by a CFP® professional.** CFP certification carries its own
   fiduciary obligation in financial planning.
 - **Independent custody at Charles Schwab.** Canyon never takes custody of

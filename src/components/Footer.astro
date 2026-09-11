@@ -1,7 +1,21 @@
 ---
+import {
+  ADVISORY_SERVICES_LINE,
+  STANDARD_RISK_LANGUAGE,
+  WEBSITE_DISCLOSURE,
+  resolvedDisclosureDocs,
+} from '../data/compliance';
+
 const year = new Date().getFullYear();
 const fineLink =
   'font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;';
+
+const docs = resolvedDisclosureDocs();
+const isExternal = (href: string) => href.startsWith('http');
+
+// Compliance supplies the approved wording; until then fall back to the firm
+// relationship plus the standard risk language.
+const disclosure = WEBSITE_DISCLOSURE || `${ADVISORY_SERVICES_LINE} ${STANDARD_RISK_LANGUAGE}`;
 ---
 
 <footer class="footer" role="contentinfo">
@@ -49,23 +63,26 @@ const fineLink =
   </div>
   <div class="footer-bottom" style="flex-direction:column;gap:16px;text-align:center;">
     <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
-      <a href="/privacy" style={fineLink}>Privacy Policy</a>
+      {
+        docs.map((doc) =>
+          isExternal(doc.href) ? (
+            <a href={doc.href} target="_blank" rel="noopener" style={fineLink}>
+              {doc.label}
+            </a>
+          ) : (
+            <a href={doc.href} style={fineLink}>
+              {doc.label}
+            </a>
+          )
+        )
+      }
       <a href="/disclosures" style={fineLink}>Important Disclosures</a>
-      <a
-        href="https://adviserinfo.sec.gov/firm/summary/325175"
-        target="_blank"
-        rel="noopener"
-        style={fineLink}>ADV &amp; BrokerCheck</a
-      >
       <a href="/insights" style={fineLink}>Insights</a>
     </div>
     <p>&#169; {year} Canyon Strategic Wealth, LLC. All rights reserved.</p>
     <p
       style="font-size:10px;color:rgba(255,255,255,0.2);max-width:700px;margin:0 auto;line-height:1.7;">
-      Canyon Strategic Wealth is a registered investment adviser. Registration does not imply a
-      certain level of skill or training. This website is for informational purposes only and does
-      not constitute financial, tax, or legal advice. Past performance is not indicative of future
-      results. Investing involves risk, including the possible loss of principal.
+      {disclosure}
     </p>
   </div>
 </footer>
